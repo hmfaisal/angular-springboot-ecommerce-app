@@ -1,0 +1,22 @@
+<div fxLayout="column">
+  <div class="title" fxLayoutAlign="end end" >
+    <span (click)="onAdrEdit()" class="lnr lnr-pencil pr-xs"></span>
+    <span class="pr-xs">{{deliveryAddress.firstname}}</span>
+    <span>{{deliveryAddress.lastname}}</span>
+  </div>
+  <div class="text-primary" fxLayoutAlign="end end">
+    <span class="pr-xs">{{deliveryAddress.additional}}</span>
+    <span>{{deliveryAddress.contact}}</span>
+  </div>
+  <div class="text-primary" fxLayoutAlign="end end">
+    <span class="pr-xs">{{deliveryAddress.streetNumber}}</span>
+    <span>{{deliveryAddress.streetName}}</span>
+  </div>
+  <div class="text-primary" fxLayoutAlign="end end">
+    <span class="pr-xs">{{deliveryAddress.postcode}}</span>
+    <span>{{deliveryAddress.city}}</span>
+  </div>
+  <div class="text-primary" fxLayoutAlign="end end">
+    <span class="pr-xs">{{deliveryAddress.country}}</span>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<mat-card *ngIf="singleProduct" class="shadow-none">
+    <div class="media-grid">
+      <figure >
+        <img src="{{singleProduct.productImageUrl || 'assets/images/img/product_default.png'}}">
+      </figure>
+    </div>
+      <mat-card-content>
+        <mat-card-title class="mt-xs mr-xs ml-xs">
+            {{singleProduct.productName}}
+        </mat-card-title>
+        <mat-card-subtitle fxLayout="column" >
+          <div  class="pl-xs pr-xs pb-xs">
+            <span class="number pr-xs">{{singleProduct.estimateUnitPrice}}</span>
+            <span class="">{{'EURO' | translate}}</span>
+            <span>-</span>
+            <span class="pr-xs">{{ singleProduct.unit }}</span>
+            <span>{{ singleProduct.unitType }}</span>
+          </div>
+        </mat-card-subtitle>
+      </mat-card-content>
+      <mat-card-actions  fxLayout="row" fxLayoutWrap="wrap">
+        <span (click)="addToList(singleProduct)" class="lnr lnr-file-add pb-xs pl-xs pr-xs "></span>
+        <span *ngIf="requestTotal>=1" (click)="addToRequest(singleProduct)" class="lnr lnr-plus-circle pb-xs pr-xs"></span>
+      </mat-card-actions>
+  </mat-card>

@@ -1,0 +1,9 @@
+phases:
+  build:
+    commands:
+      - echo Build completed on `date`
+      - mvn package
+
+artifacts:
+  files:
+    - '**/*'

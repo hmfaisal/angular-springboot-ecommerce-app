@@ -1,0 +1,36 @@
+<span *ngIf="menuitem.type === 'sub'">
+  <mat-list-item appAccordionLink *ngFor="let childitem of menuitem.children" group="{{menuitem.link}}" (click)="sidemenuClose()">
+    <a *ngIf="menuitem.type === 'sub'" appAccordionToggle class="relative" [routerLink]="[ childitem.link ]" routerLinkActive="active">
+      <span class="lnr {{ childitem.icon}} pr-1"></span>
+      <span class="">{{ childitem.name | translate | uppercase }}</span>
+    </a>
+  </mat-list-item>
+</span>
+
+<span *ngIf="menuitem.type === 'logout'">
+  <mat-list-item appAccordionLink (click)="sidemenuClose()">
+    <a *ngIf="menuitem.type === 'logout'" (click)="logout()" appAccordionToggle class="relative">
+      <span class="lnr {{ menuitem.icon}} pr-1"></span>
+      <span class="">{{ menuitem.name | translate | uppercase }}</span>
+    </a>
+  </mat-list-item>
+</span>
+
+<span *ngIf="menuitem.type === 'lang'">
+  <mat-divider></mat-divider>
+  <mat-list-item appAccordionLink group="{{menuitem.link}}">
+    <a appAccordionToggle class="relative" href="javascript:;" *ngIf="menuitem.type === 'lang'">
+      <span class="lnr {{ menuitem.icon}} pr-1"></span>
+      <span class="">{{ menuitem.name | translate | uppercase }}</span>
+      <span fxFlex></span>
+      <span class="lnr lnr-chevron-down pr-1"></span>
+    </a>
+    <mat-nav-list class="sub-menu" *ngIf="menuitem.type === 'lang'">
+      <mat-list-item *ngFor="let childitem of menuitem.children" routerLinkActive="open" (click)="sidemenuClose()">
+        <a (click)="changeLanguage(childitem.link)" class="relative">
+          {{ childitem.name | translate }}
+        </a>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-list-item>
+</span>

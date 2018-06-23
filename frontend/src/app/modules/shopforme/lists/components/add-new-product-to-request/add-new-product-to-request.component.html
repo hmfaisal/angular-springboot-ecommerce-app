@@ -1,0 +1,25 @@
+<mat-card-title class="border pb-xs">
+  {{'SELECT_REQUEST' | translate}}
+</mat-card-title>
+<mat-dialog-content fxLayout="column">
+  <div *ngIf="total>=1">
+    <div class="pb-1 valign-center" *ngFor="let request of requests  | paginate: { id: 'myrequests', itemsPerPage: 20, currentPage: page, totalItems: total }">
+      <mat-radio-button (change)="onSelectionChange(request)" name="request" value="{{request}}">{{request.shoppingRequest.requestName}}</mat-radio-button>
+      <span fxFlex></span>
+      <div class="media-grid">
+        <figure *ngIf="imageDisplayCondition(request.shoppingProduct)">
+          <img src="{{productImageUrl || 'assets/images/img/product_default.png'}}">
+        </figure>
+      </div>
+      <hr>
+    </div>
+  </div>
+  <div *ngIf="total>=1" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="center center">
+    <pagination-controls class="" (pageChange)="page = $event" (pageChange)="getMyRequests($event)" id="myrequests"></pagination-controls>
+  </div>
+  <mat-progress-bar *ngIf="submitted" mode="indeterminate" [color]="primary"></mat-progress-bar>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+  <button (click)="onSubmit()" fxFlex="50" mat-button color="primary" class="btn-block text-center ">{{'ADD_TO_REQUEST_BUTTON' | translate}}</button>
+  <button fxFlex="40" (click)="onDialogClose()" mat-button color="accent" class="btn-block text-center">{{'CLOSE_BUTTON' | translate}}</button>
+</mat-dialog-actions>

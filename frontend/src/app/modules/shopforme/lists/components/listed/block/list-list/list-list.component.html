@@ -1,0 +1,54 @@
+<mat-card *ngIf="!isFormView && selectedList" class="shadow-none">
+  <mat-card-title class="mt-xs">
+    <span class="pl-xs pr-xs">{{'LIST_DETAILS' | translate}}</span>
+  </mat-card-title>
+  <mat-card-subtitle fxLayout="column">
+    <div class="title pa-xs">
+      <span (click)="onEdit()" class="lnr lnr-pencil pr-xs"></span>
+      <span>{{selectedList.listName}} </span>
+    </div>
+    <div class="pl-xs pr-xs">
+      <span class="pr-xs">{{'TOTAL_ITEM' | translate}}</span>
+      <span fxFlex></span>
+      <span class="" fxLayoutAlign="end end">{{total}}</span>
+    </div>
+    <div class="pl-xs pr-xs">
+      <span class="pr-xs">{{'EST_PRICE' | translate}}</span>
+      <span fxFlex></span>
+      <span class="pr-xs">{{price}}</span>
+      <span class="text-secondary">{{'EURO' | translate}}</span>
+    </div>
+    <div class="pl-xs pr-xs">
+      <span class="pr-xs">{{'COST' | translate}}</span>
+      <span fxFlex></span>
+      <span class="pr-xs">{{cost}}</span>
+      <span class="text-secondary">{{'EURO' | translate}}</span>
+    </div>
+    <div class="title pa-xs">
+      <span class="pr-xs">{{'TOTAL_PRICE' | translate}}</span>
+      <span fxFlex></span>
+      <span class="pr-xs">{{totalPrice}} </span>
+      <span class="text-secondary">{{'EURO' | translate}}</span>
+    </div>
+  </mat-card-subtitle>
+</mat-card>
+
+<mat-card class="shadow-none" *ngIf="isFormView && selectedList">
+  <form *ngIf="!submitted" [formGroup]="form" (ngSubmit)="onSubmit()" #listForm="ngForm">
+    <mat-card-content class="ma-xs" fxLayout="column">
+      <div>
+        <mat-form-field style="width:100%">
+          <input matInput formControlName="listName" required [value]="selectedList.listName" placeholder="{{ 'LISTNAME' | translate}}"
+          />
+        </mat-form-field>
+        <small *ngIf="form.controls['listName'].hasError('required') && form.controls['listName'].touched" class="mat-text-warn">{{'LISTNAME_ERROR1' | translate}}</small>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions class="ma-xs" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+      <button fxFlex="40" type="submit" [disabled]="!listForm.form.valid" mat-button color="primary" class="btn-block text-center">{{'SAVE_BUTTON' | translate}}</button>
+      <button fxFlex="40" (click)="onClose()" mat-button color="accent" class="btn-block text-center">{{'CLOSE_BUTTON' | translate}}</button>
+    </mat-card-actions>
+  </form>
+  <mat-progress-bar *ngIf="submitted" mode="indeterminate" [color]="primary"></mat-progress-bar>
+</mat-card>

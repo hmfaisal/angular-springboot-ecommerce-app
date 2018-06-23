@@ -1,0 +1,6 @@
+<app-request-active fxFlex fxFlexOffset.gt-sm="240px" *ngIf="currentview == 'REQUESTS' || currentview == 'GOING_SHOPPING'" [country]="country" ></app-request-active>
+<app-request-by-place fxFlex fxFlexOffset.gt-sm="240px" *ngIf="currentview == 'DISTANCE'" [country]="country" [city]="city"></app-request-by-place>
+<app-request-by-price fxFlex fxFlexOffset.gt-sm="240px" *ngIf="currentview == 'PRICE'" [country]="country" [city]="city"></app-request-by-price>
+<app-request-by-time fxFlex fxFlexOffset.gt-sm="240px" *ngIf="currentview == 'TIME'" [country]="country" [city]="city"></app-request-by-time>
+<app-request-detail fxFlex fxFlexOffset.gt-sm="240px" *ngIf="currentview == 'REQUESTSINGLE'"></app-request-detail>
+<app-secondary-menu ></app-secondary-menu>

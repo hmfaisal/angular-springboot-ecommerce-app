@@ -1,0 +1,82 @@
+@import "~assets/styles/scss/material-variables";
+@import "~assets/styles/scss/mixins";
+@import "~assets/styles/scss/app-variables";
+@include material-variables($theme);
+
+mat-toolbar {
+  background: white!important;
+  font-weight:100!important;
+}
+
+.lnr {
+  font-size: 24px;
+  color: #848489;
+}
+
+a {
+  font-size: 0.9rem!important;
+  @include hover-focus {
+    color:mat-color($primary);
+    .lnr {
+      color:mat-color($primary);
+    }
+  }
+}
+
+.secondMenuWrap{
+  background: white;
+  line-height: inherit;
+  position: fixed;
+  left:60px;
+}
+
+.sMenu{
+  top:48px;
+  height:100%;
+}
+
+.sMenuTrigger{
+  //padding-top: 8px;
+  color: #4D4D4D;
+  width:180px;
+}
+
+@include media-breakpoint-down(sm) {
+  .secondMenuWrap{
+    border:0;
+    width: 100%;
+    left:0;
+    border-top: 1px solid #b2b2b2;
+    border-radius:16px;;
+  }
+  .sMenu{
+    display:flex;
+    justify-content:space-around;
+    bottom:0!important;
+    height:48px;
+    top:initial;
+  }
+  .sMenuTrigger{
+    bottom:48px;
+    width:100%;
+    border-bottom: 1px solid #ceced2;
+  }
+
+  .fMenu{
+    display:flex;
+    justify-content:space-around;
+    bottom:48px;
+    height:48px;
+    top:initial;
+    border-bottom: 1px solid #ceced2;
+  }
+
+}
+
+
+
+
+
+
+
+

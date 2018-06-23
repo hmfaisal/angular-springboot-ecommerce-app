@@ -1,0 +1,29 @@
+<div fxShow="false" fxShow.gt-sm>
+    <div class="secondMenuWrap sMenu pt-1">
+      <div fxLayout="column" *ngFor="let childitem of menus; let i = index" [ngClass]="{'active': selectedIndex == i}" class="pa-1">
+        <a (click)="triggerMenu(childitem, i)" class="valign-center">
+          <span class="lnr {{ childitem.icon}}"></span>
+          <span class="pl-1">
+            {{ childitem.name | translate }}
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!--For small screen -->
+  <div fxShow="false" fxShow.sm fxShow.xs>
+  
+    <div class="secondMenuWrap sMenu">
+      <div *ngFor="let childitem of menus; let i = index" [ngClass]="{'active': selectedIndex == i}">
+        <a  (click)="triggerMenu(childitem, i)">
+          <div class="valign-center" fxLayout="column">
+            <span class="lnr {{ childitem.icon}} mt-xs"></span>
+            <div class="text-sm ">{{ childitem.name | translate }}</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    
+  </div>

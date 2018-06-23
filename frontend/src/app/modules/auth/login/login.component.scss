@@ -1,0 +1,11 @@
+@import "../../../../assets/styles/scss/material-variables";
+@include material-variables($theme);
+
+.primary{
+    color: mat-color($primary);
+}
+
+.fb-button{
+    background-color: #3B5998;
+    color: #ffffff;
+}

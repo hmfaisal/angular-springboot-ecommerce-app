@@ -1,0 +1,19 @@
+@import "~assets/styles/scss/material-variables";
+@import "~assets/styles/scss/mixins";
+@import "~assets/styles/scss/app-variables";
+@include material-variables($theme);
+  
+.lnr {
+    font-size: 16px;
+    color: #8e8e93!important;
+}
+
+mat-card-title{
+    overflow: hidden!important;
+    white-space: nowrap!important;
+    text-overflow: ellipsis!important;
+}
+.media-grid figure{
+    background: #ffffff!important;
+    height: 200px!important;
+}

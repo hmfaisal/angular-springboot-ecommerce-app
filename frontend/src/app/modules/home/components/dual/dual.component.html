@@ -1,0 +1,53 @@
+<div class="wrap-3d pb-1">
+
+  <div class="item-3d pt-2 pb-2">
+    <figure fxLayout="row" fxLayoutWrap="wrap"  class="item-content">
+      <div fxFlex="100%" fxFlex.gt-sm="50%" class="item-img">
+        <img src="/assets/images/img/shopping1-min.png" alt="" />
+      </div>
+      <div fxFlex="100%" fxFlex.gt-sm="50%" class="item-caption" >
+          <p>
+            <span class="title text-lg">{{'DUAL_TITLE1' |translate |uppercase}}</span>
+          </p>
+          <p class="pb-1">
+            <span class="text-primary">{{'DUAL_SUBTITLE1' |translate}}</span>
+          </p>
+          <button (click)="route('requester')" mat-button color="primary" class="btn-block text-lg">{{'REQUESTNOW_BUTTON' | translate|uppercase}}</button>
+      </div>
+    </figure>
+  </div>
+
+  <div class="item-3d pt-2 pb-2">
+    <figure fxLayout="row" fxLayoutWrap="wrap"  class="item-content group">
+      <div fxFlex="100" fxFlex.gt-sm="50" class="item-img">
+        <img src="/assets/images/img/shopping3-min.png" alt="" />
+      </div>
+      <figcaption fxFlex="100" fxFlex.gt-sm="50" class="item-caption">
+        <p>
+          <span class="title text-lg">{{'DUAL_TITLE2' |translate |uppercase}}</span>
+        </p>
+        <p class="pb-1">
+          <span class="text-primary">{{'DUAL_SUBTITLE2' |translate}}</span>
+        </p>
+        <button (click)="route('shopper')" mat-button color="primary" class="btn-block text-lg">{{'ACCEPTNOW_BUTTON' | translate |uppercase}}</button>
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="item-3d pt-2 pb-2">
+    <figure fxLayout="row" fxLayoutWrap="wrap"  class="item-content group">
+      <div fxFlex="100" fxFlex.gt-sm="50" class="item-img">
+        <img src="/assets/images/img/shopping2-min.png" alt="" />
+      </div>
+      <figcaption fxFlex="100" fxFlex.gt-sm="50" class="item-caption">
+        <p>
+          <span class="title text-lg">{{'DUAL_TITLE3' |translate |uppercase}}</span>
+        </p>
+        <p class="pb-1">
+          <span class="text-primary">{{'DUAL_SUBTITLE3' |translate}}</span>
+        </p>
+        <button (click)="route('requester')" mat-button color="primary" class="btn-block text-lg">{{'LISTNOW_BUTTON' | translate |uppercase}}</button>
+      </figcaption>
+    </figure>
+  </div>
+</div>

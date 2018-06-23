@@ -1,0 +1,38 @@
+@import "~assets/styles/scss/material-variables";
+@import "~assets/styles/scss/mixins";
+@import "~assets/styles/scss/app-variables";
+@include material-variables($theme);
+
+input {
+    display: none;
+  }
+  
+  label {
+    display: inline-block;
+    margin: 0 0 -1px;
+    padding: 8px 8px;
+    font-weight: 500!important;
+    font-size: 1rem!important;
+    font-family:'Montserrat', sans-serif!important;
+    text-align: center;
+    color: #8e8e93;
+    border: 1px solid transparent;
+    display: flex;
+  }
+  
+  label:before {
+    font-weight: normal;
+    //margin-right: 10px;
+  }
+  
+  label:hover {
+    color: #888;
+    cursor: pointer;
+  }
+  
+  input:checked + label {
+    color: #000000;
+    //border: 1px solid #ddd;
+    //border-top: 2px solid mat-color($primary);
+    border-bottom: 2px solid mat-color($primary);
+  }

@@ -1,0 +1,8 @@
+<div *ngIf="requests && total>=1" fxLayout="row" fxLayoutWrap="wrap" class="pt-xs">
+    <app-request-single fxFlex.gt-lg="25%" fxFlex.gt-xs="33.33%"  fxFlex="50%" *ngFor="let request of requests  | paginate: { id: 'allConfirmedRequests', itemsPerPage: 20, currentPage: page, totalItems: total }" [singleRequest]="request" [source]="source"></app-request-single>
+</div>
+<div *ngIf="total<1" fxLayout="row" fxLayoutWrap="wrap" class="pa-xs">
+  <p>{{'NO_REQUEST' | translate}}</p>
+</div>
+
+  <pagination-controls *ngIf="total>=1" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="center center" (pageChange)="page = $event" (pageChange)="getMyConfirmedRequests($event)" id="allConfirmedRequests"></pagination-controls>

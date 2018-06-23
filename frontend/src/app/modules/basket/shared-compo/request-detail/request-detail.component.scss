@@ -1,0 +1,32 @@
+@import "~assets/styles/scss/material-variables";
+@import "~assets/styles/scss/mixins";
+@import "~assets/styles/scss/app-variables";
+@include material-variables($theme);
+
+@include media-breakpoint-down(sm) {
+    .mb{
+        margin-bottom: 48px;
+    }
+}
+.lnr{
+    color:mat-color($warn)!important;
+}
+.header{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-top: 0.1rem solid #efeff4;
+    border-bottom: 0.1rem solid #efeff4;
+}
+
+pagination-controls ::ng-deep .ngx-pagination li {
+    border-radius: 50px;
+    cursor: pointer;
+}
+  
+pagination-controls ::ng-deep .ngx-pagination a {
+    color: #8e8e93;
+}
+  
+pagination-controls ::ng-deep .ngx-pagination .current {
+    background: mat-color($primary);
+}

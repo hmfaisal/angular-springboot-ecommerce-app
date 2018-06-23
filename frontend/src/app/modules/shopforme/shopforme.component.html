@@ -1,0 +1,13 @@
+
+<app-product-all fxFlex fxFlexOffset.gt-sm="240px"  *ngIf="currentview == 'PRODUCTS' || currentview == 'SHOP_4_ME'" [country]="country"></app-product-all>
+<app-product-by-category fxFlex fxFlexOffset.gt-sm="240px"  *ngIf="currentview == 'CATEGORY'" [country]="country"></app-product-by-category>
+<app-product-by-high fxFlex fxFlexOffset.gt-sm="240px"  *ngIf="currentview == 'HIGH'" [country]="country"></app-product-by-high>
+<app-product-by-low fxFlex fxFlexOffset.gt-sm="240px"  *ngIf="currentview == 'LOW'" [country]="country"></app-product-by-low>
+<app-product-by-name fxFlex fxFlexOffset.gt-sm="240px"  *ngIf="currentview == 'SEARCH'" [country]="country"></app-product-by-name>
+<app-product-by-range fxFlex fxFlexOffset.gt-sm="240px"  *ngIf="currentview == 'PRICE'" [country]="country"></app-product-by-range>
+<app-product-by-shop fxFlex fxFlexOffset.gt-sm="240px"  *ngIf="currentview == 'BRAND'" [country]="country"></app-product-by-shop>
+<app-myList fxFlex fxFlexOffset.gt-sm="240px"  *ngIf="currentview == 'LISTS'"></app-myList>
+<app-list-detail fxFlex fxFlexOffset.gt-sm="240px" *ngIf="currentview == 'LISTSINGLE'"></app-list-detail>
+<app-unlisted-detail fxFlex fxFlexOffset.gt-sm="240px" *ngIf="currentview == 'UNLISTED'"></app-unlisted-detail>
+
+<app-secondary-menu  class="menu-pos"></app-secondary-menu>

@@ -1,0 +1,40 @@
+<mat-card [ngClass]="{'cborder': singleRequest && source=='requester' && singleRequest.shoppingRequest.requestStatus=='REQUESTED'&& singleRequest.shoppingRequest.shoppingStatus=='ACCEPTED'}" *ngIf="singleRequest" class="shadow-none">
+    <div class="media-grid">
+      <figure *ngIf="imageDisplayCondition(singleRequest.shoppingProduct)">
+        <img src="{{productImageUrl || 'assets/images/img/product_default.png'}}">
+      </figure>
+    </div>
+      <mat-card-content >
+        <mat-card-title class="mt-xs ml-xs mr-xs">
+          <span class="">{{singleRequest.shoppingRequest.requestName}}</span>
+        </mat-card-title>
+        <mat-card-subtitle fxLayout="column" >
+          <div class="pl-xs pr-xs">
+            <span class="pr-xs">{{'TOTAL_ITEM' | translate}}</span>
+            <span fxFlex></span>
+            <span class="number">{{singleRequest.shoppingRequest.estimateTotalUnit}}</span>
+          </div>
+          <div class="pl-xs pr-xs">
+            <span class="pr-xs">{{'EST_PRICE' | translate}}</span>
+            <span fxFlex></span>
+            <span class="pr-xs">{{singleRequest.shoppingRequest.estimatedTotalPrice}}</span>
+            <span class="text-secondary">{{'EURO' | translate}}</span>
+          </div>
+          <div class="pl-xs pr-xs">
+            <span class="pr-xs">{{'COST' | translate}}</span>
+            <span fxFlex></span>
+            <span class="pr-xs">{{singleRequest.shoppingRequest.shippingcost}}</span>
+            <span class="text-secondary">{{'EURO' | translate}}</span>
+          </div>
+          <div *ngIf="calculateTotalPrice(singleRequest.shoppingRequest.estimatedTotalPrice,singleRequest.shoppingRequest.shippingcost )" class="title pa-xs">
+            <span class="pr-xs">{{'TOTAL_PRICE' | translate}}</span>
+            <span fxFlex></span>
+            <span class="pr-xs">{{ totalPrice }}</span>
+            <span class="text-secondary">{{'EURO' | translate}}</span>
+          </div>
+        </mat-card-subtitle>
+      </mat-card-content>
+      <mat-card-actions  fxLayout="row" fxLayoutWrap="wrap" class="">
+          <button (click)="selectRequest(singleRequest)" fxFlex="100" mat-button color="accent" class="btn-block text-center" >{{'SELECT_BUTTON' | translate}}</button>
+      </mat-card-actions>
+  </mat-card>

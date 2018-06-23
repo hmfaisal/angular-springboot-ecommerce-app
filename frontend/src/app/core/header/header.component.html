@@ -1,0 +1,28 @@
+<a *ngIf="!hasSignedIn() && menuitem && menuitem.type === 'guest'" class="ml-xs overflow-visible" [routerLink]="[menuitem.link]" routerLinkActive="active">
+  <span class="mr-xs text-sm">{{ menuitem.name | translate | uppercase }}</span>
+</a>
+
+<button *ngIf="!hasSignedIn() && menuitem && menuitem.type === 'lang'" matTooltip="{{ menuitem.name | translate }}" [matMenuTriggerFor]="lang"
+  class="ml-xs" mat-icon-button>
+  <span class="lnr {{ menuitem.icon}}"></span>
+</button>
+<mat-menu #lang="matMenu" x-position="before" y-position="after">
+  <button *ngFor="let childitem of menuitem.children" mat-menu-item (click)="changeLanguage(childitem.link)">
+    {{ childitem.name | translate }}
+  </button>
+</mat-menu>
+
+<a *ngIf="hasSignedIn() && menuitem && menuitem.type === 'link' && menuitem.name!='BASKETS'" class="ml-xs overflow-visible" (click)="selectMenu(menuitem)" [routerLink]="[menuitem.link]"
+  routerLinkActive="active">
+  <button matTooltip="{{ menuitem.name | translate }}" mat-icon-button fxShow="false" fxShow.xs>
+      <span class="lnr {{ menuitem.icon}}"></span>
+  </button>
+  <span class="mr-xs text-sm" fxShow="false" fxShow.gt-xs>{{ menuitem.name | translate | uppercase }}</span>
+</a>
+
+<a *ngIf="hasSignedIn() && menuitem && menuitem.type === 'link' && menuitem.name==='BASKETS'" class="ml-xs overflow-visible" [routerLink]="[menuitem.link]"
+  routerLinkActive="active">
+  <button matTooltip="{{ menuitem.name | translate }}" mat-icon-button >
+      <span class="lnr {{ menuitem.icon}}"></span>
+  </button>
+</a>

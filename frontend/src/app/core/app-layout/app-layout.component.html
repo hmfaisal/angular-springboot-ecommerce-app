@@ -1,0 +1,41 @@
+<div class="app mat-typography" [dir]="dir">
+  <mat-toolbar class="main-header">
+    <div class="branding">
+      <a [routerLink]="['/']">
+        <div class="logo"></div>
+      </a>
+    </div>
+    <div fxFlex></div>
+    <div *ngFor="let menuitem of menuItems.getAll()">
+      <app-header [menuitem]="menuitem"></app-header>
+      <a *ngIf="hasSignedIn() && menuitem.type === 'sub'" (click)="sidemenu.toggle()" class="ml-xs overflow-visible">
+        <button matTooltip="{{ menuitem.name | translate }}" mat-icon-button>
+            <span class="lnr {{ menuitem.icon}}"></span>
+        </button>
+      </a>
+    </div>
+  </mat-toolbar>
+  <!--
+  <div class="gradient"></div>
+  -->
+  <!--
+  <section class="progress-bar">
+    <mat-progress-bar [color]="'primary'" [mode]="progressBarMode">
+    </mat-progress-bar>
+  </section>
+  -->
+  <mat-sidenav-container class="app-inner">
+    <mat-sidenav *ngIf="hasSignedIn()" #sidemenu position="end" class="sidebar-panel" id="sidebar-panel" [mode]="'over'" [opened]="closeStatus"
+      (open)="sidePanelOpened = true" (close)="sidePanelOpened = false" [perfectScrollbar]="config" >
+      <mat-nav-list appAccordion class="navigation">
+        <span *ngFor="let menuitem of menuItems.getAll()">
+          <app-sidemenu (langChange)="changeLanguage($event)" (showEvent)="sideClose($event)" [menuitem]="menuitem"></app-sidemenu>
+        </span>
+      </mat-nav-list>
+    </mat-sidenav>
+    <div class="grid-container" >
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-container>
+      
+</div>

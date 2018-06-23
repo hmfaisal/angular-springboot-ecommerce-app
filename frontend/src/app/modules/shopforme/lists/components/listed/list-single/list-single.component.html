@@ -1,0 +1,28 @@
+<mat-card *ngIf="singleList" class="shadow-none">
+  <div class="media-grid">
+    <figure *ngIf="imageDisplayCondition(singleList.listProduct)">
+      <img src="{{productImageUrl || 'assets/images/img/product_default.png'}}">
+    </figure>
+  </div>
+    <mat-card-content>
+      <mat-card-title class="mt-xs mr-xs ml-xs">
+        {{singleList.shoppingList.listName}}
+      </mat-card-title>
+      <mat-card-subtitle fxLayout="column" >
+        <div *ngIf="calculateTotalItem(singleList.listProduct)" class="pl-xs pr-xs pb-xs">
+          <span class="pr-xs">{{'TOTAL_ITEM' | translate}}</span>
+          <span fxFlex></span>
+          <span class="">{{ total }}</span>
+        </div>
+        <div *ngIf="calculatePrice(singleList.listProduct)" class="pl-xs pr-xs pb-xs">
+          <span class="pr-xs">{{'TOTAL_PRICE' | translate}}</span>
+          <span fxFlex></span>
+          <span class="pr-xs">{{ price }}</span>
+          <span class="text-secondary">{{'EURO' | translate}}</span>
+        </div>
+      </mat-card-subtitle>
+    </mat-card-content>
+    <mat-card-actions  fxLayout="row" fxLayoutWrap="wrap">
+        <button (click)="selectList(singleList)" fxFlex="100" mat-button color="accent" class="btn-block text-center" >{{'SELECT_BUTTON' | translate}}</button>
+    </mat-card-actions>
+</mat-card>

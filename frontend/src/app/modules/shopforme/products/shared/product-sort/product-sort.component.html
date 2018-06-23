@@ -1,0 +1,13 @@
+<div fxShow="false" fxShow.sm fxShow.xs fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="start start" >
+  <div *ngFor="let childitem of menuitem.children; let i = index" >
+    <mat-radio-button  (click)="selectMenu(childitem, i)"  class="text-md pa-1">{{ childitem.name | translate }}</mat-radio-button>
+  </div>
+</div>
+
+<div fxShow="false" fxShow.gt-sm fxLayout="column" fxLayoutWrap="wrap" fxLayoutAlign="start start" >
+  <div *ngFor="let childitem of menuitem.children; let i = index" >
+    <mat-radio-button  (click)="selectMenu(childitem, i)"  class="text-md pa-1">{{ childitem.name | translate }}</mat-radio-button>
+  </div>
+</div>
+
+

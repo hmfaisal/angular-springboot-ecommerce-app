@@ -1,0 +1,6 @@
+@import "~assets/styles/scss/material-variables";
+@import "~assets/styles/scss/mixins";
+@import "~assets/styles/scss/app-variables";
+@include material-variables($theme);
+
+

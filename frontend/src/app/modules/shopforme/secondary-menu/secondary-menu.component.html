@@ -1,0 +1,71 @@
+<div fxShow="false" fxShow.gt-sm>
+  <div class="secondMenuWrap sMenu pt-1">
+    <div fxLayout="column" *ngFor="let childitem of menus; let i = index" [ngClass]="{'active': isSmenuShow == true && selectedIndex == i}"
+      class="pa-1">
+      <a (click)="triggerMenu(childitem, i)" class="valign-center">
+        <span class="lnr {{ childitem.icon}}"></span>
+        <span class="pl-1">
+          {{ childitem.name | translate }}
+        </span>
+      </a>
+      <div *ngIf="isSmenuShow == true && i==selectedIndex" >
+        <div class="sMenuTrigger pr-1">
+          <app-product-add *ngIf="childitem.name == 'ADD_ITEM'" [menuitem]="childitem" class=""></app-product-add>
+          <app-product-search *ngIf="childitem.name == 'SEARCH'" [menuitem]="childitem" class=""></app-product-search>
+          <app-product-sort *ngIf="childitem.name == 'SORT'" [menuitem]="childitem" class=""></app-product-sort>
+          <app-product-brand *ngIf="childitem.name == 'BRAND'" [menuitem]="childitem" class=""></app-product-brand>
+          <app-product-category *ngIf="childitem.name == 'CATEGORY'" [menuitem]="childitem" class=""></app-product-category>
+          <app-product-range *ngIf="childitem.name == 'PRICE'" [menuitem]="childitem" class=""></app-product-range>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--For small screen -->
+<div fxShow="false" fxShow.sm fxShow.xs>
+
+  <div class="secondMenuWrap sMenu">
+    <div *ngFor="let childitem of mainMenu; let i = index" [ngClass]="{'active': isSmenuShow == true && selectedIndex == i}">
+      <a *ngIf="childitem.type != 'more' && childitem.type != 'filter'" (click)="triggerMenu(childitem, i)">
+        <div class="valign-center" fxLayout="column">
+          <span class="lnr {{ childitem.icon}} mt-xs"></span>
+          <div class="text-sm ">{{ childitem.name | translate }}</div>
+        </div>
+      </a>
+      <a *ngIf="childitem.type == 'more'" (click)="triggerMoreMenu(childitem, i)">
+        <div class="valign-center" fxLayout="column">
+          <span class="lnr {{ childitem.icon}} mt-xs"></span>
+          <div class="text-sm ">{{ childitem.name | translate }}</div>
+        </div>
+      </a>
+      <div *ngIf="isSmenuShow == true && i==selectedIndex">
+        <div class="secondMenuWrap sMenuTrigger">
+          <app-product-search *ngIf="childitem.name == 'SEARCH'" [menuitem]="childitem" class="pb-1"></app-product-search>
+          <app-product-add *ngIf="childitem.name == 'ADD_ITEM'" [menuitem]="childitem" class=""></app-product-add>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="isMoreMenuShow == true" class="secondMenuWrap fMenu ">
+    <div class="valign-center" *ngFor="let childitem of filterMenu; let i = index" [ngClass]="{'active': isSmenuShow == true && fselectedIndex == i}">
+      <a (click)="ftriggerMenu(childitem, i)">
+        <div class="valign-center" fxLayout="column">
+          <span class="lnr {{ childitem.icon}} mt-xs"></span>
+          <div class="text-sm ">{{ childitem.name | translate }}</div>
+        </div>
+      </a>
+      <div *ngIf="isFmenuShow == true && i==fselectedIndex">
+        <div class="secondMenuWrap sMenuTrigger">
+          <app-product-brand *ngIf="childitem.name == 'BRAND'" [menuitem]="childitem" class="pb-1"></app-product-brand>
+          <app-product-category *ngIf="childitem.name == 'CATEGORY'" [menuitem]="childitem" class="pb-1"></app-product-category>
+          <app-product-range *ngIf="childitem.name == 'PRICE'" [menuitem]="childitem" class="pb-1"></app-product-range>
+          <app-product-sort *ngIf="childitem.name == 'SORT'" [menuitem]="childitem" class="pb-1"></app-product-sort>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,38 @@
+<div class="text-lg text-center primary pa-xs" >
+  {{'REGISTRATION' | translate | uppercase}}
+</div>
+<p [class]="notification.msgType" *ngIf="notification">{{notification.msgBody}}</p>
+<form *ngIf="!submitted" [formGroup]="form" (ngSubmit)="onSubmit()" #registerForm="ngForm">
+  <div fxLayout="column" fxLayoutAlign="space-around">
+    <div class="">
+      <mat-form-field style="width: 100%">
+        <input matInput formControlName="username" required placeholder="{{'REGISTRATION_EMAIL' | translate}}">
+      </mat-form-field>
+      <small *ngIf="form.controls['username'].hasError('required') && form.controls['username'].touched" class="mat-text-warn">{{'REGISTRATION_EMAIL_ERROR1' | translate}}</small>
+      <small *ngIf="form.controls['username'].errors?.username && form.controls['username'].touched" class="mat-text-warn">{{'REGISTRATION_EMAIL_ERROR2' | translate}}</small>
+    </div>
+    <div class="">
+      <mat-form-field style="width: 100%">
+        <input matInput formControlName="password" required type="password" placeholder="{{'PASSWORD' | translate}}">
+      </mat-form-field>
+      <small *ngIf="form.controls['password'].hasError('required') && form.controls['password'].touched" class="mat-text-warn">{{'PASSWORD_ERROR1' | translate}}</small>
+    </div>
+    <div class="">
+      <mat-form-field style="width: 100%">
+        <input matInput placeholder="{{'CONFIRM_PASSWORD' | translate}}" formControlName="confirmPassword" type="password">
+      </mat-form-field>
+      <small *ngIf="form.controls['confirmPassword'].hasError('required') && form.controls['confirmPassword'].touched" class="mat-text-warn">{{'CONFIRM_PASSWORD_ERROR1' | translate}}</small>
+      <small *ngIf="form.controls['confirmPassword'].errors?.equalTo" class="mat-text-warn">{{'CONFIRM_PASSWORD_ERROR2' | translate}}</small>
+    </div>
+    <!--
+    <div class="pb-1">
+      <mat-checkbox class="text-sm mat-text-muted">{{'AGGREMENT_TEXT' | translate}}</mat-checkbox>
+    </div>
+  -->
+    <button mat-button color="primary" class="btn-block" type="submit" [disabled]="!registerForm.form.valid">{{'REGISTRATION_BUTTON' | translate}}</button>
+  </div>
+</form>
+<mat-progress-bar *ngIf="submitted" mode="indeterminate" [color]="primary"></mat-progress-bar>
+<div class="pt-xs pb-xs text-xs-center">
+  <a [routerLink]="['/auth/login']">{{'LOGIN_BUTTON' | translate}}</a>
+</div>

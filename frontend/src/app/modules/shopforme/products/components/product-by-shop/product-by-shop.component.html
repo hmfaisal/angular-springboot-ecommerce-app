@@ -1,0 +1,13 @@
+<h2>
+  <span>{{ 'PRODUCTS_SUBTITLE6' | translate }}</span>
+</h2>
+<div *ngIf="total>=1 && products" fxLayout="row" fxLayoutWrap="wrap">
+  <app-product-single *ngFor="let product of products  | paginate: { id: 'shopproducts', itemsPerPage: 20, currentPage: page, totalItems: total }"
+    fxFlex.gt-lg="25%" fxFlex.gt-xs="33.33%" fxFlex="50%" [singleProduct]="product" [requestTotal]="requestTotal"></app-product-single>
+</div>
+<div *ngIf="total<1" fxLayout="row" fxLayoutWrap="wrap" class="pa-xs">
+  <p>{{'RESULT_NOT_FOUND' | translate}}</p>
+</div>
+
+<pagination-controls *ngIf="total>=1" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="center center" class="center"
+  (pageChange)="page = $event" (pageChange)="getProducts($event,shop,country)" id="shopproducts"></pagination-controls>

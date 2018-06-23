@@ -1,0 +1,39 @@
+<mat-sidenav-container class=" app mat-typography bg">
+  <mat-toolbar class="main-header navbar-transparent">
+    <div class="branding">
+      <a [routerLink]="['/']">
+        <div class="logo"></div>
+      </a>
+    </div>
+    <div fxFlex></div>
+    <div *ngFor="let menuitem of menuItems.getAll()">
+      <button *ngIf="menuitem.type === 'lang'" matTooltip="{{ menuitem.name | translate }}" [matMenuTriggerFor]="lang" mat-icon-button
+        class="ml-xs">
+        <span class="lnr {{ menuitem.icon}}"></span>
+      </button>
+      <mat-menu #lang="matMenu" x-position="before" y-position="after">
+        <button *ngFor="let childitem of menuitem.children" mat-menu-item (click)="changeLanguage(childitem.link)">
+          {{ childitem.name | translate }}
+        </button>
+      </mat-menu>
+    </div>
+  </mat-toolbar>
+  <div class="session" >
+      <div class="session-content" >
+        <div class="session-wrapper">
+          <mat-card>
+            <mat-card-content class="ma-xs">
+              <swiper class="swiper" [config]="config">
+                <div class="swiper-wrapper overlay">
+                  <img class="swiper-slide" *ngFor="let image of appConfig.authImages" [src]="image">
+                </div>
+                <div class="swiper-pagination" swiper-button-white></div>
+              </swiper>
+              <router-outlet></router-outlet>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+  </div>
+
+</mat-sidenav-container>

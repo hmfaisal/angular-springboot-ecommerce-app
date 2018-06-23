@@ -1,0 +1,14 @@
+<h2>
+  <span>{{ 'REQUESTS_SUBTITLE1' | translate }}</span>
+</h2>
+
+<div *ngIf="requests && total>=1" fxLayout="row" fxLayoutWrap="wrap" class="pt-xs">
+  <app-request-map-single fxFlex.gt-lg="25%" fxFlex.gt-xs="33.33%" fxFlex="50%" *ngFor="let request of requests  | paginate: { id: 'allActiveRequests', itemsPerPage: 20, currentPage: page, totalItems: total }"
+    [singleRequest]="request" [source]="source"></app-request-map-single>
+</div>
+<div *ngIf="total<1" fxLayout="row" fxLayoutWrap="wrap" class="pa-xs">
+  <p>{{'NO_REQUEST_AREA' | translate}}</p>
+</div>
+
+<pagination-controls *ngIf="total>=1" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="center center" class=""
+  (pageChange)="page = $event" (pageChange)="getRequests($event,status,country,city)" id="allActiveRequests"></pagination-controls>

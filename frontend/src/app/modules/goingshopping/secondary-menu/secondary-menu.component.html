@@ -1,0 +1,44 @@
+<div fxShow="false" fxShow.gt-sm>
+    <div class="secondMenuWrap sMenu pt-1">
+      <div fxLayout="column" *ngFor="let childitem of menus; let i = index" [ngClass]="{'active': isSmenuShow == true && selectedIndex == i}"
+        class="pa-1">
+        <a (click)="triggerMenu(childitem, i)" class="valign-center">
+          <span class="lnr {{ childitem.icon}}"></span>
+          <span class="pl-1">
+            {{ childitem.name | translate }}
+          </span>
+        </a>
+        <div *ngIf="isSmenuShow == true && i==selectedIndex" >
+          <div class="sMenuTrigger pr-1">
+              <app-request-place *ngIf="childitem.name == 'DISTANCE'" [menuitem]="childitem" class=""></app-request-place>
+              <app-request-time *ngIf="childitem.name == 'TIME'" [menuitem]="childitem" class=""></app-request-time>
+              <app-request-price *ngIf="childitem.name == 'PRICE'" [menuitem]="childitem" class=""></app-request-price>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!--For small screen -->
+  <div fxShow="false" fxShow.sm fxShow.xs>
+  
+    <div class="secondMenuWrap sMenu">
+      <div *ngFor="let childitem of menus; let i = index" [ngClass]="{'active': isSmenuShow == true && selectedIndex == i}">
+        <a  (click)="triggerMenu(childitem, i)">
+          <div class="valign-center" fxLayout="column">
+            <span class="lnr {{ childitem.icon}} mt-xs"></span>
+            <div class="text-sm ">{{ childitem.name | translate }}</div>
+          </div>
+        </a>
+        <div *ngIf="isSmenuShow == true && i==selectedIndex">
+          <div class="secondMenuWrap sMenuTrigger">
+              <app-request-place *ngIf="childitem.name == 'DISTANCE'" [menuitem]="childitem" class=""></app-request-place>
+              <app-request-time *ngIf="childitem.name == 'TIME'" [menuitem]="childitem" class=""></app-request-time>
+              <app-request-price *ngIf="childitem.name == 'PRICE'" [menuitem]="childitem" class=""></app-request-price>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>

@@ -1,0 +1,14 @@
+@import "~assets/styles/scss/material-variables";
+@import "~assets/styles/scss/mixins";
+@import "~assets/styles/scss/app-variables";
+@include material-variables($theme);
+
+
+.mat-card-title{
+    overflow-wrap: break-word;
+    text-align: right;
+}
+.media-grid figure{
+    background: #ffffff!important;
+    height: 180px!important;
+}

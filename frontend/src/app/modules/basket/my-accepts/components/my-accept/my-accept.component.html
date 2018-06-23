@@ -1,0 +1,11 @@
+<div *ngIf="tabs" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="end end">
+  <div *ngFor="let tab of tabs;let i = index">
+    <a (click)="triggerTab(tab, i)">
+      <input id="{{tab.id}}" type="radio" name="tabs" checked>
+      <label for="{{tab.id}}">{{tab.label}}</label>
+    </a>
+  </div>
+</div>
+
+<app-my-accept-active *ngIf="selectedTab == 'tab2'"></app-my-accept-active>
+<app-my-accept-archived *ngIf="selectedTab== 'tab1'"></app-my-accept-archived>

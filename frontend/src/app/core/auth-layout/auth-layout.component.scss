@@ -1,0 +1,47 @@
+@import "~assets/styles/scss/material-variables";
+@import "~assets/styles/scss/mixins";
+@import "~assets/styles/scss/app-variables";
+@include material-variables($theme);
+
+:host 
+.mat-drawer-content {padding: 0;} 
+.mat-drawer-container {z-index: 1000}
+
+.bg{
+    background: url(/assets/images/img/authBg.jpg);
+}
+.navbar-transparent {
+    background: transparent!important;
+    border-bottom: 1px solid transparent;
+    box-shadow: none;
+}
+.lnr {
+    font-size:24px!important;
+    color: #efeff4!important;
+    @include hover-focus {
+      color:#ffffff!important;
+    }
+}
+
+a {
+    color: #efeff4!important;
+    @include hover-focus {
+      color:#ffffff!important;
+      .lnr {
+        color:#ffffff!important;
+      }
+    }
+}
+.active{
+    color:#ffffff!important;
+    .lnr{
+      color:#ffffff!important;
+    }
+}
+swiper {
+    display: flex;
+    height: 200px;
+    background: transparent;
+}
+
+

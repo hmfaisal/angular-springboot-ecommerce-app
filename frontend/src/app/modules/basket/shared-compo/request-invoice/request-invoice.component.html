@@ -1,0 +1,36 @@
+<mat-card *ngIf="selectedRequest" class="shadow-none">
+  <mat-card-title class="ml-xs mr-xs mt-xs">
+    {{'LIST_DETAILS' | translate}}
+  </mat-card-title>
+  <mat-card-content>
+    <mat-card-subtitle fxLayout="column">
+      <div class="title pl-xs pr-xs pb-xs">
+        <span>{{selectedRequest.requestName}} </span>
+      </div>
+      <div class="pl-xs pr-xs">
+        <span class="pr-xs">{{'TOTAL_ITEM' | translate}}</span>
+        <span fxFlex></span>
+        <span class="number">{{selectedRequest.estimateTotalUnit}}</span>
+      </div>
+      <div class="pl-xs pr-xs">
+        <span class="pr-xs">{{'EST_PRICE' | translate}}</span>
+        <span fxFlex></span>
+        <span class="pr-xs">{{selectedRequest.estimatedTotalPrice}}</span>
+        <span class="text-secondary">{{'EURO' | translate}}</span>
+      </div>
+      <div class="pl-xs pr-xs">
+        <span class="pr-xs">{{'COST' | translate}}</span>
+        <span fxFlex></span>
+        <span class="pr-xs">{{selectedRequest.shippingcost}}</span>
+        <span class="text-secondary">{{'EURO' | translate}}</span>
+      </div>
+      <div  *ngIf="calculateTotalPrice(selectedRequest.estimatedTotalPrice,selectedRequest.shippingcost )" class="title pa-xs">
+        <span class="pr-xs">{{'TOTAL_PRICE' | translate}}</span>
+        <span fxFlex></span>
+        <span class="pr-xs">{{totalPrice }}
+        </span>
+        <span class="text-secondary">{{'EURO' | translate}}</span>
+      </div>
+    </mat-card-subtitle>
+  </mat-card-content>
+</mat-card>

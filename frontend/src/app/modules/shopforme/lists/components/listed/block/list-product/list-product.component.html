@@ -1,0 +1,76 @@
+<mat-card class="shadow-none" *ngIf="!isFormView && listProduct">
+  <div fxFlex="50" class="media-grid">
+    <figure>
+      <img class="" src="{{listProduct.productImageUrl || 'assets/images/img/product_default.png'}}">
+    </figure>
+  </div>
+  <div fxFlex="50" fxLayout="column" fxLayoutAlign="end end">
+    <mat-card-title class="ma-xs">
+      {{listProduct.productName}}
+    </mat-card-title>
+    <mat-card-subtitle fxLayout="column">
+      <div class="pl-xs pr-xs pb-xs">
+        <span class="pr-xs">{{'AMOUNT' | translate}}</span>
+        <span fxFlex></span>
+        <span class="pr-xs">{{listProduct.estimateUnit}}</span>
+        <span class="text-secondary">{{listProduct.unitType}}</span>
+      </div>
+      <div class="pl-xs pr-xs">
+        <span class="pr-xs">{{'PRICE' | translate}}</span>
+        <span fxFlex></span>
+        <span class="pr-xs">{{listProduct.estimateUnitPrice}}</span>
+        <span class="text-secondary">{{'EURO' | translate}}</span>
+      </div>
+    </mat-card-subtitle>
+    <mat-card-actions class="mb-xs">
+      <span (click)="onEdit()" class="lnr lnr-pencil pr-xs"></span>
+      <span (click)="onRemove()" class="lnr lnr-cross pr-xs"></span>
+    </mat-card-actions>
+  </div>
+</mat-card>
+
+<mat-card class="shadow-none" *ngIf="isFormView && listProduct">
+  <form *ngIf="!submitted" [formGroup]="form" (ngSubmit)="onSubmit()" #listProductForm="ngForm">
+    <mat-card-subtitle fxLayout="column">
+      <div class="pl-xs pr-xs">
+        <mat-form-field style="width:100%">
+          <input matInput formControlName="productName" required [value]="listProduct.productName" placeholder="{{ 'PRODUCTNAME' | translate}}"
+          />
+        </mat-form-field>
+        <small *ngIf="form.controls['productName'].hasError('required') && form.controls['productName'].touched" class="mat-text-warn">{{'NAME_FORM_ERROR' | translate}}</small>
+      </div>
+      <div class="pl-xs pr-xs">
+        <mat-form-field style="width:100%">
+          <input matInput formControlName="estimateUnitPrice" required [min]="0" [value]="listProduct.estimateUnitPrice" placeholder="{{ 'ESTIMATE_UNIT_PRICE' | translate}}"
+          />
+        </mat-form-field>
+        <small *ngIf="form.controls['estimateUnitPrice'].hasError('required') && form.controls['estimateUnitPrice'].touched" class="mat-text-warn">{{'PRICE_FORM_ERROR' | translate}}</small>
+        <small *ngIf="form.controls['estimateUnitPrice'].errors?.number" class="mat-text-warn">{{'NUMBER_ONLY_ERROR' | translate}}</small>
+        <small *ngIf="form.controls['estimateUnitPrice'].errors?.min" class="mat-text-warn">{{'POSITIVE_NUMBER_ONLY_ERROR' | translate}}</small>
+      </div>
+      <div class="pl-xs pr-xs">
+        <mat-form-field style="width:100%">
+          <input matInput formControlName="estimateUnit" [value]="listProduct.estimateUnit" required [min]="0" placeholder="{{ 'UNITS' | translate}}"
+          />
+        </mat-form-field>
+        <small *ngIf="form.controls['estimateUnit'].hasError('required') && form.controls['estimateUnit'].touched" class="mat-text-warn">{{'UNITS_FORM_ERROR' | translate}}</small>
+        <small *ngIf="form.controls['estimateUnit'].errors?.number" class="mat-text-warn">{{'NUMBER_ONLY_ERROR' | translate}}</small>
+        <small *ngIf="form.controls['estimateUnit'].errors?.min" class="mat-text-warn">{{'POSITIVE_NUMBER_ONLY_ERROR' | translate}}</small>
+      </div>
+      <div class="pl-xs pr-xs">
+        <mat-form-field style="width:100%">
+          <mat-select placeholder="{{'UNIT_TYPE' | translate}}" formControlName="unitType">
+            <mat-option *ngFor="let unit of units" [value]="unit.value">
+              {{ unit.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-card-subtitle>
+    <mat-card-actions fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center" class="mb-xs ml-xs mr-xs">
+      <button fxFlex="45" type="submit" [disabled]="!listProductForm.form.valid" mat-button color="primary" class="btn-block text-center">{{'SAVE_BUTTON' | translate}}</button>
+      <button fxFlex="45" (click)="onClose()" mat-button color="accent" class="btn-block text-center">{{'CLOSE_BUTTON' | translate}}</button>
+    </mat-card-actions>
+  </form>
+  <mat-progress-bar *ngIf="submitted" mode="indeterminate" [color]="primary"></mat-progress-bar>
+</mat-card>

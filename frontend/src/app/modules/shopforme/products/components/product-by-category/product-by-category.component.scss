@@ -1,0 +1,28 @@
+@import "~assets/styles/scss/material-variables";
+@import "~assets/styles/scss/mixins";
+@import "~assets/styles/scss/app-variables";
+@include material-variables($theme);
+
+.center {
+    margin: auto;
+    text-align: center;
+}
+  
+pagination-controls ::ng-deep .ngx-pagination li {
+    border-radius: 50px;
+    cursor: pointer;
+}
+  
+pagination-controls ::ng-deep .ngx-pagination a {
+    color: #8e8e93;
+}
+  
+pagination-controls ::ng-deep .ngx-pagination .current {
+    background: mat-color($primary);
+}
+
+@include media-breakpoint-down(sm) {
+    pagination-controls{
+        margin-bottom: 48px!important;
+    }
+  }

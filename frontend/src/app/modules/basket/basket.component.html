@@ -1,0 +1,7 @@
+<app-my-request fxFlexOffset.gt-sm="240px" fxFlex *ngIf="currentview == 'REQUEST' || currentview == 'BASKETS'"></app-my-request>
+<app-my-accept fxFlexOffset.gt-sm="240px" fxFlex *ngIf="currentview == 'ACCEPT'"></app-my-accept>
+<app-request-detail fxFlexOffset.gt-sm="240px" fxFlex *ngIf="currentview == 'REQUESTSINGLE'"></app-request-detail>
+<!--
+<app-secondary-menu  (clickOutside)="onClickedOutside($event)"></app-secondary-menu>
+-->
+<app-secondary-menu ></app-secondary-menu>

@@ -1,0 +1,15 @@
+<h2>
+  <span>{{ 'LISTS_SUBTITLE1' | translate }}</span>
+</h2>
+<div fxLayout="row" fxLayoutWrap="wrap">
+  <app-my-unlisted *ngIf="unlists && unListTotal>=1" [singleList]="unlists" [total]="unListTotal" fxFlex.gt-lg="25%" fxFlex.gt-xs="33.33%" fxFlex="50%"></app-my-unlisted>
+  <div fxFlex.gt-lg="25%" fxFlex.gt-xs="33.33%" fxFlex="50%" *ngFor="let list of lists  | paginate: { id: 'allLists', itemsPerPage: 20, currentPage: page, totalItems: total }">
+    <app-list-single *ngIf="lists && total>=1" [singleList]="list"></app-list-single>
+  </div>
+</div>
+<div *ngIf="total<1 && unListTotal<1" fxLayout="row" fxLayoutWrap="wrap">
+  <p>{{'NO_LIST' | translate}}</p>
+</div>
+
+<pagination-controls *ngIf="total>=1 || unListTotal>=1" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="center center" (pageChange)="page = $event"
+  (pageChange)="getMyLists($event)" id="allLists"></pagination-controls>

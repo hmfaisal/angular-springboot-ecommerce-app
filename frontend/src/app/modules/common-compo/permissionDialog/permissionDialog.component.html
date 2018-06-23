@@ -1,0 +1,11 @@
+<mat-dialog-content>
+  <div class="pb-1">
+    <span class="pr-xs">{{'IS_DELETE' | translate}}</span>
+    <span class="" >{{name}}</span>
+    <span class="">{{'QUESTION_MARK' | translate}}</span>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+  <button (click)="confirmSelection()" fxFlex="40" mat-button color="primary" class="btn-block text-center ">{{'YES_BUTTON' | translate}}</button>
+  <button fxFlex="40" (click)="onDialogClose()" mat-button color="accent" class="btn-block text-center">{{'NO_BUTTON' | translate}}</button>
+</mat-dialog-actions>

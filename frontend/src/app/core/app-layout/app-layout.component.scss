@@ -1,0 +1,44 @@
+@import "~assets/styles/scss/material-variables";
+@import "~assets/styles/scss/mixins";
+@import "~assets/styles/scss/app-variables";
+@include material-variables($theme);
+mat-toolbar {
+  background: mat-color($primary)!important;
+  font-weight:300!important;
+}
+.mat-toolbar-row, .mat-toolbar-single-row {
+  height: 48px!important;
+}
+.lnr {
+  font-size: 24px!important;
+  color: #efeff4!important;
+  font-weight: 300!important;
+  @include hover-focus {
+    color:#ffffff!important;
+  }
+}
+
+a {
+  color: #efeff4!important;
+  @include hover-focus {
+    color:#ffffff!important;
+    .lnr {
+      color:#ffffff!important;
+    }
+  }
+}
+.active{
+  color:#ffffff!important;
+  .lnr{
+    color:#ffffff!important;
+  }
+}
+.gradient {
+  width:100%;
+  height:2px;
+  background-image:linear-gradient(to right, mat-color($primary), mat-color($accent));
+}
+
+
+
+

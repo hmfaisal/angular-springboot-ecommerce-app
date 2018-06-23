@@ -1,0 +1,12 @@
+<form *ngIf="!submitted" [formGroup]="form" (ngSubmit)="onSubmit()" #PSearchForm="ngForm">
+  <div class="custom-form">
+    <div class="custom-form__container">
+      <div class="custom-form__input pr-xs">
+        <input matInput formControlName="name" placeholder="{{ 'SEARCH' | translate}}">
+        <button (click)="onSubmit()" class="box-icon button-included">
+          <span class="lnr lnr-magnifier"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

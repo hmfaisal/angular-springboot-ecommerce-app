@@ -1,0 +1,55 @@
+<div *ngIf="selectedRequest && source=='shopper' && isMyRequest(selectedRequest)" xLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="end end"
+  class="pb-xs">
+  <span class="lnr lnr-alarm pr-xs"></span>
+  <span class="text-primary">{{ 'REQUEST_EXIST_INFO' | translate }}</span>
+</div>
+
+<div *ngIf="selectedRequest && source=='requester' && selectedRequest.shoppingRequest.requestStatus=='REQUESTED'&& selectedRequest.shoppingRequest.shoppingStatus=='ACCEPTED'"
+  fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="end end" class="pb-xs">
+  <span class="lnr lnr-alarm pr-xs"></span>
+  <span class="text-primary">{{ 'REQUEST_ACCEPT_INFO' | translate }}</span>
+</div>
+
+<h2 *ngIf="selectedRequest && source=='shopper' && selectedRequest.shoppingRequest.requestStatus=='REQUESTED'&& selectedRequest.shoppingRequest.shoppingStatus=='ACCEPTED'">
+  <span>{{ 'LISTS_SUBTITLE4' | translate }}</span>
+</h2>
+
+<div *ngIf="selectedRequest" fxLayout="row" fxLayoutWrap="wrap">
+
+  <app-request-invoice fxFlex="100%" fxFlex.gt-xs="50%" [selectedRequest]="selectedRequest.shoppingRequest"></app-request-invoice>
+  <app-request-delivery [selectedRequest]="selectedRequest.shoppingRequest" [deliveryAddress]="selectedRequest.deliveryAddress"
+    [source]="source" fxFlex="100%" fxFlex.gt-xs="50%"></app-request-delivery>
+  <h2 class="primary">
+    <span>{{ 'SHOPPING_ITEM' | translate }}</span>
+  </h2>
+  <div fxFlex="100%" fxFlex.gt-xs="50%" *ngFor="let shoppingProduct of selectedRequest.shoppingProduct | paginate: { id: 'shoppingproducts', itemsPerPage: 10, currentPage: page, totalItems: calculateTotalItem(selectedRequest) }"
+    class="pb-1">
+    <app-request-product [shoppingProduct]="shoppingProduct" [shoppingRequest]="selectedRequest.shoppingRequest" [source]="source"></app-request-product>
+  </div>
+</div>
+
+<pagination-controls *ngIf="selectedRequest" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="center center" (pageChange)="page = $event"
+  id="shoppingproducts"></pagination-controls>
+
+<mat-progress-bar *ngIf="submitted" mode="indeterminate" [color]="primary"></mat-progress-bar>
+
+<div *ngIf="selectedRequest && source=='requester' && selectedRequest.shoppingRequest.requestStatus=='REQUESTED' && selectedRequest.shoppingRequest.shoppingStatus==null"
+  class="mb" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="center center">
+  <button fxFlex="50" (click)="onRemove(selectedRequest)" mat-button color="accent" class="btn-block text-center">{{'REMOVE_BUTTON' | translate}}</button>
+</div>
+
+<div *ngIf="selectedRequest && source=='requester' && selectedRequest.shoppingRequest.requestStatus=='REQUESTED'&& selectedRequest.shoppingRequest.shoppingStatus!=null"
+  class="mb" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="center center">
+  <button fxFlex="50" (click)="onConfirm(selectedRequest)" mat-button color="primary" class="btn-block text-center">{{'CONFIRM_BUTTON' | translate}}</button>
+</div>
+
+<div *ngIf="selectedRequest && source=='shopper' && !isMyRequest(selectedRequest) && selectedRequest.shoppingRequest.requestStatus=='REQUESTED' && selectedRequest.shoppingRequest.shoppingStatus==null"
+  class="mb" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="center center">
+  <button fxFlex="50" (click)="onAccept(selectedRequest)" mat-button color="primary" class="btn-block text-center">{{'ACCEPT_BUTTON' | translate}}</button>
+</div>
+
+<div *ngIf="selectedRequest && source=='shopper' && selectedRequest.shoppingRequest.shoppingStatus=='ACCEPTED'" class="mb"
+  fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+  <button fxFlex="45" (click)="onDeliver(selectedRequest)" mat-button color="primary" class="btn-block text-center">{{'DELIVER_BUTTON' | translate}}</button>
+  <button fxFlex="45" (click)="onRemove(selectedRequest)" mat-button color="accent" class="btn-block text-center">{{'CANCEL_BUTTON' | translate}}</button>
+</div>

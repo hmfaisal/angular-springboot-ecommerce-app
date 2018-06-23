@@ -1,0 +1,93 @@
+<mat-card-title class="border pb-xs">
+  {{'DELIVERY_ADDRESS' | translate}}
+</mat-card-title>
+<form *ngIf="!submitted" [formGroup]="form" (ngSubmit)="onSubmit()" #deliveryAddressForm="ngForm">
+  <mat-dialog-content>
+    <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+      <div fxFlex="45%">
+        <mat-form-field style="width: 100%">
+          <input matInput formControlName="firstname" required placeholder="{{'FIRSTNAME' | translate}}">
+        </mat-form-field>
+        <small *ngIf="form.controls['firstname'].hasError('required') && form.controls['firstname'].touched" class="mat-text-warn">{{'FIRSTNAME_ERROR1' | translate}}</small>
+      </div>
+      <div fxFlex="45%">
+        <mat-form-field style="width: 100%">
+          <input matInput formControlName="lastname" required placeholder="{{'LASTNAME' | translate}}">
+        </mat-form-field>
+        <small *ngIf="form.controls['lastname'].hasError('required') && form.controls['lastname'].touched" class="mat-text-warn">{{'LASTNAME_ERROR1' | translate}}</small>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+      <div fxFlex="30%">
+        <mat-form-field style="width: 100%">
+          <input matInput formControlName="streetNumber" required placeholder="{{'STREET' | translate}}">
+        </mat-form-field>
+        <small *ngIf="form.controls['streetNumber'].hasError('required') && form.controls['streetNumber'].touched" class="mat-text-warn">{{'STREET_ERROR1' | translate}}</small>
+      </div>
+      <div fxFlex="60%">
+        <mat-form-field style="width: 100%">
+          <input matInput formControlName="streetName" required placeholder="{{'PLACE' | translate}}">
+        </mat-form-field>
+        <small *ngIf="form.controls['streetName'].hasError('required') && form.controls['streetName'].touched" class="mat-text-warn">{{'PLACE_ERROR1' | translate}}</small>
+      </div>
+    </div>
+
+    
+
+    <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+      <div fxFlex="30%">
+        <mat-form-field style="width: 100%">
+          <input matInput formControlName="postcode" required placeholder="{{'POST_CODE' | translate}}">
+        </mat-form-field>
+        <small *ngIf="form.controls['postcode'].hasError('required') && form.controls['postcode'].touched" class="mat-text-warn">{{'POST_CODE_ERROR1' | translate}}</small>
+      </div>
+      <div fxFlex="60%">
+        <mat-form-field style="width: 100%">
+          <input matInput  formControlName="city" required placeholder="{{'DISTRICT' | translate}}">
+        </mat-form-field>
+        <small *ngIf="form.controls['city'].hasError('required') && form.controls['city'].touched" class="mat-text-warn">{{'DISTRICT_ERROR1' | translate}}</small>
+        <small *ngIf="form.controls['city'].hasError('pattern') && form.controls['city'].touched" class="mat-text-warn">{{'DISTRICT_ERROR2' | translate}}</small>
+      </div>
+    </div>
+
+    <!--
+    <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+      
+      <div fxFlex="45%">
+        <mat-form-field style="width: 100%">
+          <input matInput formControlName="administrative_area_level" placeholder="{{'AREA' | translate}}">
+        </mat-form-field>
+      </div>
+    
+      <div fxFlex="100%">
+        <mat-form-field style="width: 100%">
+          <input matInput disabled formControlName="country" placeholder="{{'COUNTRY' | translate}}">
+        </mat-form-field>
+      </div>
+    </div>
+    -->
+
+    <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+      <div fxFlex="100%">
+        <mat-form-field style="width: 100%">
+          <input matInput formControlName="additional" placeholder="{{'ADDITION_ADDRESS' | translate}}">
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+      <div fxFlex="100%">
+        <mat-form-field style="width: 100%">
+          <input matInput formControlName="contact" placeholder="{{'CONTACT_NUMBER' | translate}}">
+        </mat-form-field>
+      </div>
+    </div>
+    <mat-progress-bar *ngIf="submitted" mode="indeterminate" [color]="primary"></mat-progress-bar>
+  </mat-dialog-content>
+
+  <mat-dialog-actions fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-between center">
+    <button fxFlex="45" type="submit" [disabled]="!deliveryAddressForm.valid" mat-button color="primary" class="btn-block text-center ">{{'CONFIRM_BUTTON' | translate}}</button>
+    <button fxFlex="45" (click)="onDialogClose()" mat-button color="accent" class="btn-block text-center">{{'CLOSE_BUTTON' | translate}}</button>
+  </mat-dialog-actions>
+</form>

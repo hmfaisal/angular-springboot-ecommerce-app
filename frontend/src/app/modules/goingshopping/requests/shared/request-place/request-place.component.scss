@@ -1,0 +1,18 @@
+@import "~assets/styles/scss/material-variables";
+@import "~assets/styles/scss/mixins";
+@import "~assets/styles/scss/app-variables";
+@include material-variables($theme);
+
+.custom-autocomplete__input input{
+    height: 48px;
+  }
+  @include media-breakpoint-down(sm) {
+    :host ::ng-deep app-address .custom-autocomplete__dropdown{
+      position: absolute;
+      right: 0;
+      bottom: 48px;
+      left: 0;
+      top:initial;
+    }
+  }
+  

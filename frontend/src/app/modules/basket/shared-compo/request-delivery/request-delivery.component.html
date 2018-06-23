@@ -1,0 +1,14 @@
+<mat-card class="shadow-none">
+  <mat-card-title class="ml-xs mr-xs mt-xs" fxLayoutAlign="end end">
+    {{'DELIVERY_TITLE' | translate}}
+  </mat-card-title>
+  <mat-card-content fxLayout="column">
+    <div class="pl-xs pr-xs pb-xs">
+      <app-del-time [selectedRequest]="selectedRequest" *ngIf="isTimeView==true &&source=='requester'" ></app-del-time>
+      <app-time-complete [selectedRequest]="selectedRequest" [source]="source" *ngIf="isTimeView==false||source=='shopper'" fxLayoutAlign="end end"></app-time-complete>
+    </div>
+    <div class="pl-xs pr-xs pb-xs">
+      <app-delAddress-complete [selectedRequest]="selectedRequest" [deliveryAddress]="deliveryAddress" [source]="source"></app-delAddress-complete>
+    </div>
+  </mat-card-content>
+</mat-card>

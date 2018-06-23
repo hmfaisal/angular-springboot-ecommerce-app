@@ -1,0 +1,18 @@
+<mat-card class="shadow-none">
+  <mat-card-title *ngIf="isTimeView==false && isDelAdrView==false" class="ma-xs">
+    {{'DELIVERY_TITLE' | translate}}
+  </mat-card-title>
+  <mat-card-title *ngIf="isTimeView==true || isDelAdrView==true" fxLayoutAlign="end end" class="ma-xs">
+    {{'DELIVERY_TITLE' | translate}}
+  </mat-card-title>
+  <mat-card-content fxLayout="column">
+    <div class="pa-xs">
+      <app-time *ngIf="isTimeView==false"></app-time>
+      <app-time-complete *ngIf="isTimeView==true" fxLayoutAlign="end end"></app-time-complete>
+    </div>
+    <div class="pa-xs">
+      <app-address *ngIf="isDelAdrView==false"></app-address>
+      <app-delAddress-complete *ngIf="isDelAdrView==true" ></app-delAddress-complete>
+    </div>
+  </mat-card-content>
+</mat-card>

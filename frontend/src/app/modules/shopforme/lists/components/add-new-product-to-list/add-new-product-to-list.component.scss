@@ -1,0 +1,46 @@
+@import "~assets/styles/scss/material-variables";
+@import "~assets/styles/scss/mixins";
+@import "~assets/styles/scss/app-variables";
+@include material-variables($theme);
+
+.lnr {
+    font-size: 16px;
+}
+
+.border{
+    border-bottom: 0.1rem solid #DCDEDD;
+}
+.mat-dialog-content{
+    font-size: 1rem;
+    font-family: "Montserrat", sans-serif !important;
+    color:#6a6a6a!important;
+}
+.mat-card-content{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+mat-radio-button{
+    overflow: hidden!important;
+    white-space: nowrap!important;
+    text-overflow: ellipsis!important;
+}
+
+.media-grid figure{
+    background: #ffffff!important;
+    height: 40px!important;
+    width: 40px!important;
+}
+
+pagination-controls ::ng-deep .ngx-pagination li {
+    border-radius: 50px;
+    cursor: pointer;
+}
+  
+pagination-controls ::ng-deep .ngx-pagination a {
+    color: #8e8e93;
+}
+  
+pagination-controls ::ng-deep .ngx-pagination .current {
+    background: mat-color($primary);
+}

@@ -1,0 +1,15 @@
+<div  class="custom-form">
+  <div class="custom-form__container">
+    <div class="custom-form__input">
+      <input [min]="minMoment" (dateTimeChange)="onSubmitDate()" [(ngModel)]="selectedMoment" placeholder="{{this.selectedRequest.deliveryTime| date: 'medium'}}"
+        [owlDateTimeTrigger]="reqSave" [owlDateTime]="reqSave">
+      <button class="box-icon button-included">
+        <span class="lnr lnr-clock"></span>
+      </button>
+    </div>
+    <owl-date-time [startAt]="minMoment" [pickerMode]="'dialog'" #reqSave></owl-date-time>
+  </div>
+</div>
+<small *ngIf="reqSave.invalid && reqSave.errors.owlDateTimeMin">
+  {{'DELIVERYTIME_MIN_ERROR' | translate}} {{minMoment| date: 'medium'}}
+</small>

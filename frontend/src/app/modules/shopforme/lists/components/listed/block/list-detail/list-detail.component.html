@@ -1,0 +1,25 @@
+<h2>
+  <span>{{ 'LISTS_SUBTITLE3' | translate }}</span>
+</h2>
+
+<div *ngIf="selectedList" fxLayout="row" fxLayoutWrap="wrap">
+
+  <app-list-list fxFlex="100%" fxFlex.gt-xs="50%" [selectedList]="selectedList.shoppingList" [total]="calculateTotalItem(selectedList)"
+    [price]="calculatePrice(selectedList)" [cost]="calculateShippingCost(selectedList)" [totalPrice]="calculateTotalPrice()"></app-list-list>
+  <app-list-request fxFlex="100%" fxFlex.gt-xs="50%"></app-list-request>
+  <h2 class="primary">
+    <span>{{ 'LIST_ITEM' | translate }}</span>
+  </h2>
+  <app-list-product fxFlex="100%" fxFlex.gt-xs="50%" *ngFor="let listProduct of selectedList.listProduct | paginate: { id: 'listproducts', itemsPerPage: 10, currentPage: page, totalItems: calculateTotalItem(selectedList) }"
+    class="pb-1" [listProduct]="listProduct"></app-list-product>
+</div>
+
+<pagination-controls *ngIf="selectedList" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="center center" class="center"
+  (pageChange)="page = $event" id="listproducts"></pagination-controls>
+
+<mat-progress-bar *ngIf="submitted" mode="indeterminate" [color]="primary"></mat-progress-bar>
+
+<div *ngIf="selectedList" class="mb" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="space-around center">
+  <button fxFlex="40" (click)="onSubmit()" mat-button color="primary" class="btn-block text-center">{{'REQUEST_BUTTON' | translate}}</button>
+  <button fxFlex="40" (click)="onRemove(selectedList)" mat-button color="accent" class="btn-block text-center">{{'REMOVE_BUTTON' | translate}}</button>
+</div>

@@ -1,0 +1,6 @@
+<div *ngIf="selectedRequest" fxLayout="column">
+  <div class="title" fxLayoutAlign="end end" >
+    <span *ngIf="source=='requester' && selectedRequest.requestStatus=='REQUESTED' && selectedRequest.shoppingStatus==null" (click)="onEdit()" class="lnr lnr-pencil pr-xs"></span>
+    <span>{{selectedRequest.deliveryTime| date: 'medium'}}</span>
+  </div>
+</div>

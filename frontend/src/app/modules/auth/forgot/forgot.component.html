@@ -1,0 +1,22 @@
+<div class="text-lg text-center primary pa-1 pb-1" >
+  {{'FORGOT_TITLE' | translate | uppercase}}
+</div>
+<p [class]="notification.msgType" *ngIf="notification">{{notification.msgBody}}</p>
+<form *ngIf="!submitted" [formGroup]="form" (ngSubmit)="onSubmit()" #forgotForm="ngForm">
+  <div fxLayout="column" fxLayoutAlign="space-around">
+    <div class="">
+      <mat-form-field style="width: 100%">
+        <input matInput formControlName="username" required placeholder="{{'REGISTRATION_EMAIL' | translate}}">
+      </mat-form-field>
+      <small *ngIf="form.controls['username'].hasError('required') && form.controls['username'].touched" class="mat-text-warn">{{'REGISTRATION_EMAIL_ERROR1' | translate}}</small>
+      <small *ngIf="form.controls['username'].errors?.username && form.controls['username'].touched" class="mat-text-warn">{{'REGISTRATION_EMAIL_ERROR2' | translate}}</small>
+    </div>
+    <button mat-button color="primary" class="btn-block" type="submit" [disabled]="!forgotForm.form.valid">{{'REGISTRATION_BUTTON' | translate}}</button>
+  </div>
+</form>
+<mat-progress-bar *ngIf="submitted" mode="indeterminate" [color]="primary"></mat-progress-bar>
+<div class="pt-xs pb-xs text-xs-center">
+  <a [routerLink]="['/auth/login']">{{'LOGIN_BUTTON' | translate}}</a>
+  <a [routerLink]="['/auth/register']">{{'REGISTRATION_BUTTON' | translate}}</a>
+</div>
+

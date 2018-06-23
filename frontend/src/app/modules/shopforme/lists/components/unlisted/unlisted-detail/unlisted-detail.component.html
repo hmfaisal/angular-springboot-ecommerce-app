@@ -1,0 +1,51 @@
+<h2 class="pl-xs pr-xs">
+  <span>{{ 'LISTS_SUBTITLE2' | translate }}</span>
+</h2>
+
+<form *ngIf="!submitted" [formGroup]="form" (ngSubmit)="onSubmit()" #listSaveForm="ngForm">
+  <div *ngIf="selectedList" fxLayout="row" fxLayoutWrap="wrap">
+
+    <div fxFlex="100%">
+      <mat-card fxFlex="100%" fxFlex.gt-xs="50%" class="shadow-none">
+        <mat-card-content class="mb-xs">
+          <mat-card-title class="mt-xs ml-xs mr-xs">
+            <mat-form-field style="width:100%">
+              <input matInput formControlName="listName" required [value]="listName" placeholder="{{ 'LISTNAME' | translate}}" />
+            </mat-form-field>
+            <small *ngIf="form.controls['listName'].hasError('required') && form.controls['listName'].touched" class="mat-text-warn">{{'LISTNAME_ERROR1' | translate}}</small>
+          </mat-card-title>
+          <mat-card-subtitle fxLayout="column">
+            <div class="pl-xs pr-xs">
+              <span class="pr-1">{{'TOTAL_ITEM' | translate}}</span>
+              <span fxFlex></span>
+              <span>{{total}}</span>
+            </div>
+            <div class="pl-xs pr-xs" *ngIf="calculatePrice(selectedList)">
+              <span class="pr-1">{{'TOTAL_PRICE' | translate}}</span>
+              <span fxFlex></span>
+              <span class="pr-xs">{{price}}</span>
+              <span class="text-secondary">{{'EURO' | translate}}</span>
+            </div>
+          </mat-card-subtitle>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <h2>
+      <span>{{ 'LIST_ITEM' | translate }}</span>
+    </h2>
+
+    <div fxFlex="100%" fxFlex.gt-xs="50%" *ngFor="let listProduct of selectedList| paginate: { id: 'unlistproducts', itemsPerPage: 10, currentPage: page, totalItems: total }"
+      class="pb-1">
+      <app-list-product [listProduct]="listProduct"></app-list-product>
+    </div>
+  </div>
+
+  <pagination-controls *ngIf="selectedList" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="center center" class="center"
+    (pageChange)="page = $event" id="unlistproducts"></pagination-controls>
+
+  <div *ngIf="selectedList" class="mb" fxLayout="row" fxLayoutWrap="wrap" fxLayoutAlign="center center">
+    <button fxFlex="50" type="submit" [disabled]="!listSaveForm.form.valid" mat-button color="primary" class="btn-block text-center">{{'SAVE_BUTTON' | translate}}</button>
+  </div>
+</form>
+<mat-progress-bar *ngIf="submitted" mode="indeterminate" [color]="primary"></mat-progress-bar>

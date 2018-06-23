@@ -1,0 +1,83 @@
+app:
+  name: backend
+
+# ===============================
+# JWT
+# ===============================
+jwt:
+  header: Authorization
+  expires_in: 12000 # 10 minutes
+  secret: queenVICTORIA
+  cookie: AUTH-TOKEN
+# ===============================
+# Log
+# ===============================
+logging:
+  level:
+    org.springframework.web: ERROR
+    com.bfwg: DEBUG
+    
+# ===============================
+# = SECURITY
+# ===============================
+security:
+  ignored: /api/register
+
+# ===============================
+# = DATA SOURCE
+# ===============================
+spring.jackson.serialization.write-dates-as-timestamps: false
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      jadira:
+        usertype:
+          databaseZone: UTC
+          javaZone: UTC
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://bb.cpdbbv5a8fy7.us-west-2.rds.amazonaws.com:5432/basketbird
+    username: bbAdmin
+    password: basketbird,01.
+    driverClassName: org.postgresql.Driver
+    
+# ===============================
+# HIKARI
+# 60 sec
+# ===============================
+hikari:      
+  cachePrepStmts: true
+  prepStmtCacheSize: 250
+  prepStmtCacheSqlLimit: 2048
+  useServerPrepStmts: true
+  useLocalSessionState: true
+  useLocalTransactionState: true
+  rewriteBatchedStatements: true
+  cacheResultSetMetadata: true
+  cacheServerConfiguration: true
+  elideSetAutoCommits: true
+  maintainTimeStats: false
+    
+# ===============================
+# SMTP EMAIL
+# ===============================
+spring.mail.host: smtp.gmail.com
+spring.mail.port: 587
+spring.mail.username: basketbird01@gmail.com
+spring.mail.password: basketbird,01.
+spring.mail.properties.mail.smtp.auth: true
+spring.mail.properties.mail.smtp.starttls.enable: true
+spring.mail.properties.mail.smtp.starttls.required: true
+spring.mail.scheduler.priorityLevels: 10
+
+# ===============================
+# SOCIAL
+# ===============================
+facebook.appKey: 1981110688834536
+facebook.appSecret: 5fde5183192521ac98bcc5bae58e5a85
+facebook.appNamespace: statelesssocial

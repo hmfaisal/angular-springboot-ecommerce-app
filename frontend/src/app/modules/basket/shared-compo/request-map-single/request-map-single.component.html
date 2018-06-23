@@ -1,0 +1,36 @@
+<mat-card *ngIf="singleRequest" class="shadow-none ">
+
+  <agm-map mat-card-image [latitude]="singleRequest.deliveryAddress.latitude ||51.165691" [longitude]="singleRequest.deliveryAddress.longitude || 10.451526000000058"
+    [zoom]="zoom"></agm-map>
+
+  <mat-card-content>
+    <mat-card-title class="ml-xs mr-xs mt-xs">
+      {{singleRequest.shoppingRequest.requestName}}
+    </mat-card-title>
+    <mat-card-subtitle fxLayout="column">
+      <div class="pl-xs pr-xs pb-xs">
+        <span class="pr-xs">{{singleRequest.deliveryAddress.postcode}}</span>
+        <span class="pr-xs">{{singleRequest.deliveryAddress.city}}</span>
+      </div>
+      <div class="pl-xs pr-xs pb-xs">
+        <span class="">{{singleRequest.shoppingRequest.deliveryTime | date: 'medium'}}</span>
+      </div>
+      <div class="pl-xs pr-xs">
+        <span class="pr-xs">{{'TOTAL_ITEM' | translate}}</span>
+        <span fxFlex></span>
+        <span class="pr-xs">{{singleRequest.shoppingRequest.estimateTotalUnit}}</span>
+      </div>
+
+      <div *ngIf="calculateTotalPrice(singleRequest.shoppingRequest.estimatedTotalPrice,singleRequest.shoppingRequest.shippingcost )"
+        class="title pa-xs">
+        <span class="pr-xs">{{'TOTAL_PRICE' | translate}}</span>
+        <span fxFlex></span>
+        <span class="pr-xs">{{ totalPrice }}</span>
+        <span class="text-secondary">{{'EURO' | translate}}</span>
+      </div>
+    </mat-card-subtitle>
+  </mat-card-content>
+  <mat-card-actions fxLayout="row" fxLayoutWrap="wrap">
+    <button (click)="selectRequest(singleRequest)" fxFlex="100" mat-button color="accent" class="btn-block text-center">{{'SELECT_BUTTON' | translate}}</button>
+  </mat-card-actions>
+</mat-card>

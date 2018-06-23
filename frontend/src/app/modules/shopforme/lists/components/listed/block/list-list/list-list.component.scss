@@ -1,0 +1,19 @@
+@import "~assets/styles/scss/material-variables";
+@import "~assets/styles/scss/mixins";
+@import "~assets/styles/scss/app-variables";
+@include material-variables($theme);
+  
+.lnr {
+    font-size: 16px;
+}
+
+.mat-card{
+    border: 0.1rem solid #b2b2b2;
+    border-radius: 0px !important;
+}
+
+.media-grid figure{
+    background: #ffffff!important;
+    height: 200px!important;
+}
+
